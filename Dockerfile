@@ -1,20 +1,17 @@
-FROM node:18-slim
+# Definindo a imagem base
+FROM node:latest
 
-ENV NODE_ENV development
+# Criando o diretório de trabalho dentro do contêiner
+WORKDIR /app
 
-USER root
-
-RUN apt-get update && apt-get upgrade -y
-
-RUN mkdir -p /usr/src/app/node_modules
-RUN mkdir -p /usr/src/app/tmp
-
-WORKDIR /usr/src/app
-
+# Copiando apenas o package.json para aproveitar o cache do Docker
 COPY package.json .
 
+# Instalando dependências
 RUN npm install
 
-COPY . . 
+# Copiando os arquivos do diretório local para o diretório de trabalho no contêiner
+COPY . .
 
+# Comando para iniciar sua aplicação
 CMD ["npm", "start"]
