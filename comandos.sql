@@ -11,7 +11,7 @@ INSERT INTO aluno (nome, idade) VALUES
 ('Maria', 22),
 ('Carlos', 21);
 
----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 
 -- # Comando para executar o banco de dados MySQL usando Docker:
 
@@ -22,8 +22,21 @@ INSERT INTO aluno (nome, idade) VALUES
 -- -e MYSQL_DATABASE=db_aula \
 -- mysql:latest
 ---------------------------------------------------------------------------------------
--- # Comando para executar o contêiner da sua aplicação Node.js:
+-- Comando para executar o contêiner da sua aplicação Node.js:
 
--- docker run -d -p 3000:3000 --name atividade04-app-1 \
--- atividade04-app
+-- docker run -d -p 3000:3000 --name atividade04-app-1 atividade04-app
+
+---------------------------------------------------------------------------------------
+
+--  Para executar a aplicação, rode o seguinte comando:
+
+-- docker run -p 3000:3000 --name atividade04-app-1 -d atividade04-app
+-- Abra a URL http://localhost:3000/consulta-dados 
+
+---------------------------------------------------------------------------------------
+-- links do github e dockerhub
+
+https://hub.docker.com/repository/docker/fuzetto/atividade04/general
+
+https://github.com/fuzetto-pixel/Atividade04
 
