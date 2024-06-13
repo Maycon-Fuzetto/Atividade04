@@ -10,8 +10,7 @@ https://github.com/fuzetto-pixel/Atividade04
 
 - Comando para executar o banco de dados MySQL usando Docker:
 
-docker run -d -p 3306:3306 --name atividade04-db-1 
-
+docker run -d -p 3306:3306 --name atividade04-db-1 -e MYSQL_ROOT_PASSWORD=passwd mysql:latest
 
 ---------------------------------------------------------------------------------------
 
