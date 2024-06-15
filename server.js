@@ -1,5 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
+const appRoutes = require('./app');
+
 
 const app = express();
 const port = 3000;
@@ -52,6 +54,8 @@ app.get('/consulta-dados/professores', (req, res) => {
     });
   });
 });
+
+app.use('/', appRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
