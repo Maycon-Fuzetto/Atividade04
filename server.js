@@ -1,6 +1,5 @@
 const express = require('express');
 const mysql = require('mysql2');
-const appRoutes = require('./app');
 
 const app = express();
 const port = 3000;
@@ -18,15 +17,15 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Rota para consulta de dados
-app.get('/consulta-dados', (req, res) => {
+// Rota para consulta de dados dos alunos
+app.get('/consulta-dados/alunos', (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
 
     connection.query('SELECT * FROM aluno', (error, results) => {
-      connection.release(); // Liberar a conexão, independentemente do resultado da consulta
+      connection.release(); 
 
       if (error) {
         return res.status(500).json({ error: error.message });
@@ -36,7 +35,23 @@ app.get('/consulta-dados', (req, res) => {
   });
 });
 
-app.use('/', appRoutes);
+// Rota para consulta de dados dos professores
+app.get('/consulta-dados/professores', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    connection.query('SELECT * FROM professores', (error, results) => {
+      connection.release(); 
+
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+      res.json(results);
+    });
+  });
+});
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
